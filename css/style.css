@@ -1,0 +1,241 @@
+:root{
+  --gap: 24px;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --accent: #2b6cb0;
+  --muted: #6b7280;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* contenedor fondo: la imagen se toma de la variable --page-bg definida por cada HTML */
+.bg-image{
+  position: fixed;
+  inset: 0;
+  background-image: var(--page-bg, none); /* inline: --page-bg: url('assets/mi-fondo.jpg') */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.85);
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* asegúrate que el contenido esté por encima del fondo */
+.wrap{
+  position: relative;
+  z-index: 1;
+}
+
+/* Página dividida en 3 secciones: izquierda (info), centro (título), derecha (nav) */
+.wrap{
+  height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) 240px minmax(220px, 320px);
+  align-items: center;
+  gap: var(--gap);
+  padding: 48px;               /* espacio desde los bordes: evita que la info pegue al margen */
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Asegúrate de que .wrap quede por encima del fondo */
+.wrap{
+  position: relative;
+  z-index: 1;
+}
+
+/* Contenedor para imagen de fondo (coloca tu imagen en assets/fondo.jpg) */
+.bg-image{
+  position: fixed;
+  inset: 0;
+  background-image: url("/img/pericosVolando.jpg"); /* ruta: c:\Users\doria\Desktop\paginaCaro\assets\fondo.jpg */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.85); /* ajusta si quieres más/menos contraste */
+  z-index: 0;
+  pointer-events: none; /* no interfiere con el contenido */
+  will-change: transform;
+}
+
+/* Left column: apartado de texto en la columna izquierda, no pega al borde */
+.left{
+  grid-column: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;  /* contenido anclado a la izquierda de su columna */
+  padding-left: 12px;           /* separación interior extra para que no llegue al borde interno */
+}
+.text-card{
+  width: 100%;
+  max-width: 640px;            /* limite ancho para que no invada el centro */
+  background: var(--card);
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(11,20,40,0.06);
+  margin: 0;
+}
+.text-content{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 14px;
+  text-align: left;
+  padding: 6px 12px;
+}
+.text-content h2{
+  margin: 0;
+  color: #ffffff; /* cambiado a blanco */
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.text-content p{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 15px;
+  max-width: 600px;
+}
+
+/* Center column: título exactamente en el centro de la página (columna 2) */
+.center-title{
+  grid-column: 2;                /* ocupa toda la columna central */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);    /* lectura top-to-bottom */
+  color: #ffffff; /* cambiado a blanco */
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 22px;
+  pointer-events: none;
+}
+
+/* Right column: barra de navegación vertical centrada */
+nav.right{
+  grid-column: 3;
+  width: 100%;
+  max-width: 320px;
+  background: linear-gradient(180deg,#ffffff,#f7fbff);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* centra verticalmente los botones dentro de la columna */
+  align-items: center;       /* centra horizontalmente los botones */
+  gap: 12px;
+  box-shadow: 0 6px 18px rgba(11,20,40,0.04);
+}
+nav.right .nav-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px dashed rgba(43,108,176,0.12);
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent);
+  transition: all .18s ease;
+  width: 80%;
+  min-height: 48px;
+  text-align: center;
+  text-decoration: none; /* para los <a> usados como botones */
+
+  /* ocultar cualquier texto dentro del botón, dejando solo la imagen visible */
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+
+/* por si el texto está dentro de un span */
+nav.right .nav-btn span{
+  display: none;
+}
+
+/* Icon dentro de botón — asegurar tamaño y centrado */
+nav.right .nav-btn .nav-icon{
+  width: 28px;
+  height: 28px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Botón de descarga: centrado bajo los botones dentro de nav.right */
+.download{
+  position: static;
+  margin-top: 12px;
+  text-decoration: none;
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(43,108,176,0.14);
+  font-weight: 600;
+  width: 80%;                /* igual que los botones para quedar alineado */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive: apilar en pantallas pequeñas; centro pasa a horizontal */
+@media (max-width:880px){
+  .wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    gap: 18px;
+    height: auto;
+  }
+  .center-title{
+    grid-column: auto;
+    width: 100%;
+    height: auto;
+    writing-mode: horizontal-tb;
+    transform: none;
+    padding: 6px 0;
+    text-align: center;
+    pointer-events: auto;
+  }
+  nav.right{
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 8px;
+    padding: 12px;
+  }
+  nav.right .nav-btn{
+    flex: 1;
+    min-height: 44px;
+    width: auto;
+  }
+  .text-card{
+    padding: 20px;
+    max-width: 980px;
+  }
+  .download{
+    width: auto;
+    padding: 8px 12px;
+  }
+}
