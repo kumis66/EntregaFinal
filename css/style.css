@@ -12,7 +12,9 @@ html, body {
   height: 100%;
   margin: 0;
   background: var(--bg);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* contenedor fondo: la imagen se toma de la variable --page-bg definida por cada HTML */
@@ -146,24 +148,20 @@ nav.right{
 nav.right .nav-btn{
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px dashed rgba(43,108,176,0.12);
-  background: transparent;
-  cursor: pointer;
-  font-weight: 600;
-  color: var(--accent);
-  transition: all .18s ease;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.85);
+  color: #1f2937; /* texto oscuro, ajústalo si tu fondo es diferente */
+  text-decoration: none;
+  border-radius: 20px;
+  transition: transform .18s ease, background .18s ease;
+  /* Fondo y color por defecto: ajusta si tu fondo es oscuro */
+  background: rgba(255,255,255,0.9);
+  color: #1f2937; /* color del texto visible */
+  margin-bottom: 10px;
   width: 80%;
   min-height: 48px;
   text-align: center;
-  text-decoration: none; /* para los <a> usados como botones */
-
-  /* ocultar cualquier texto dentro del botón, dejando solo la imagen visible */
-  font-size: 0;
-  line-height: 0;
   overflow: hidden;
 }
 
@@ -176,8 +174,8 @@ nav.right .nav-btn span{
 nav.right .nav-btn .nav-icon{
   width: 28px;
   height: 28px;
+  object-fit: contain;
   display: block;
-  margin: 0 auto;
 }
 
 /* Botón de descarga: centrado bajo los botones dentro de nav.right */
@@ -238,4 +236,78 @@ nav.right .nav-btn .nav-icon{
     width: auto;
     padding: 8px 12px;
   }
+}
+
+/* Ajuste para pantallas pequeñas: solo icono */
+@media (max-width: 520px) {
+  /* .nav-label { display: none; } */
+}
+
+/* Hover y accesibilidad */
+.nav-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,1);
+}
+
+/* Asegura que el nav quede por encima del fondo */
+nav.right {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Botones con icono + texto: fondo oscuro semitransparente para garantizar contraste */
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: rgba(0, 0, 0, 0.45); /* ajusta si quieres más/menos contraste */
+  color: #ffffff !important; /* texto blanco por defecto */
+  text-decoration: none;
+  border-radius: 18px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform .18s ease, background .18s ease;
+}
+
+/* Forzar texto de los botones del nav en verde */
+nav.right .nav-btn,
+nav.right .nav-btn .nav-label {
+  color: #4CAF50 !important;
+}
+
+/* si quieres ajustar sólo la etiqueta de texto (no el icono), usa: */
+nav.right .nav-btn .nav-label {
+  color: #4CAF50 !important;
+}
+
+/* Icono */
+.nav-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Etiqueta visible siempre */
+.nav-label {
+  display: inline-block !important;
+  color: inherit !important;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6); /* mejora legibilidad */
+  user-select: none;
+}
+
+/* Hover */
+.nav-btn:hover {
+  transform: translateY(-3px);
+  background: rgba(0,0,0,0.6);
+}
+
+/* Si hay media query que oculta las etiquetas, coméntala o ajústala */
+@media (max-width: 520px) {
+  /* .nav-label { display: none; } */
 }
