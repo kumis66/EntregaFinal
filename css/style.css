@@ -99,7 +99,7 @@ html, body {
 }
 .text-content h2{
   margin: 0;
-  color: #ffffff; /* cambiado a blanco */
+  color: #4CAF50; /* Cambia este valor por el color que prefieras */
   font-size: 20px;
   letter-spacing: 1px;
 }
