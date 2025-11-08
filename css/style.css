@@ -60,7 +60,7 @@ html, body {
 .bg-image{
   position: fixed;
   inset: 0;
-  background-image: url("/img/pericosVolando.jpg"); /* ruta: c:\Users\doria\Desktop\paginaCaro\assets\fondo.jpg */
+   /* ruta: c:\Users\doria\Desktop\paginaCaro\assets\fondo.jpg */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
